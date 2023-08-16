@@ -31,7 +31,7 @@ public class MenuMenager : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Submarine") == 0)
         {
-            submarineButtonText.text = "Spend 500 <color=yellow>●</color> to buy a submarine";
+            submarineButtonText.text = "Spend 100 <color=yellow>●</color> to buy a submarine";
         }
         else
         {
@@ -79,10 +79,10 @@ public class MenuMenager : MonoBehaviour
         }
         else
         {
-            if(PlayerPrefs.GetInt("Coins") >= 500)
+            if(PlayerPrefs.GetInt("Coins") >= 100)
             {
                 soundMenager.PurchaseSound();
-                PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 500);
+                PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 100);
                 coinCounterText.text = PlayerPrefs.GetInt("Coins").ToString();
                 submarineButtonText.text = "Submarine";
                 PlayerPrefs.SetInt("Submarine", 1);

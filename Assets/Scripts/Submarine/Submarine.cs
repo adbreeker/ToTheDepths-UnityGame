@@ -101,7 +101,7 @@ public class Submarine : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(0.2f);
-            Vector3 bubblePos = transform.position - new Vector3(1, Random.Range(0.5f,0.8f), 0);
+            Vector3 bubblePos = transform.position - new Vector3(1.3f, Random.Range(0.1f,0.5f), 0);
             Instantiate(bubble, bubblePos, Quaternion.identity);
         }
     }

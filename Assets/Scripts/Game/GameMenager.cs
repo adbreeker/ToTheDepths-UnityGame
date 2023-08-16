@@ -255,6 +255,7 @@ public class GameMenager : MonoBehaviour
         {
             finaldepth.text += "\n NEW BEST!";
         }
+
     }
 
     IEnumerator deathAnimation()
