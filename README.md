@@ -1,5 +1,5 @@
-#To The Depths
-##This is my first game for Google Play Store.
+# To The Depths
+## This is my first game for Google Play Store.
 
 To The Depths is a simple android game. <br>
 There are two minigames inside:
