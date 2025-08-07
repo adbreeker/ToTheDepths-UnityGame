@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(dirX, 0f);
+        rb.linearVelocity = new Vector2(dirX, 0f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

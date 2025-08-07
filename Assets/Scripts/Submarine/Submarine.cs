@@ -30,7 +30,7 @@ public class Submarine : MonoBehaviour
         {
             if(falling)
             {
-                rb.velocity = Vector2.zero;
+                rb.linearVelocity = Vector2.zero;
             }
             falling = false;
             

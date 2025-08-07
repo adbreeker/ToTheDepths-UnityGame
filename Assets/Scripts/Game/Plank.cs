@@ -6,7 +6,7 @@ public class Plank : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameMenager gameMenager = FindObjectOfType<GameMenager>();
+        GameMenager gameMenager = FindFirstObjectByType<GameMenager>();
         if(!gameMenager.resolution_16_9)
         {
             Vector3 scale = transform.localScale;

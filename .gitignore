@@ -10,6 +10,9 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+# Unity 6 temporary files
+.utmp/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -57,4 +60,21 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+# OS-specific files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Unity Collaborate
+**/CollabSnapshot*
+
+# Rider/VSCode/IDE files
+.idea/
+.vscode/
+*.code-workspace
+
+# Crash/diagnostic files
+*.stacktrace
+*.dmp
+
 

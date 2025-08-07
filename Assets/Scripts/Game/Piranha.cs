@@ -14,7 +14,7 @@ public class Piranha : MonoBehaviour
         {
             sideSpeed *= -1;
         }
-        GameMenager gameMenager = FindObjectOfType<GameMenager>();
+        GameMenager gameMenager = FindFirstObjectByType<GameMenager>();
         if(!gameMenager.resolution_16_9)
         {
             leftbound = -1.9f;
