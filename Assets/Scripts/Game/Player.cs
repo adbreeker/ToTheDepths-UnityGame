@@ -29,16 +29,9 @@ public class Player : MonoBehaviour
         {
             dirX = 0;
         }
-        
-        if(gameMenager.resolution_16_9)
-        {
-            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2.4f, 2.4f), transform.position.y);
-        }
-        else
-        {
-            transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2.1f, 2.1f), transform.position.y);
-        }
-        
+
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2.4f, 2.4f), transform.position.y);
+
     }
 
     private void FixedUpdate()

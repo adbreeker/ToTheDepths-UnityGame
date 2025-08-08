@@ -1,15 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
-    //game
-    public bool resolution_16_9;
+    //Instance
+    public static GameMenager instance;
+
+
+
     public GameObject piranha, plank, coin, background;
     public Player player;
-    Vector3 sp1, sp2, sp3, sp4, sp5;
+    public List<Transform> spawnPoints = new List<Transform>();
 
     //ui
     int score = 0;
@@ -30,48 +34,29 @@ public class GameMenager : MonoBehaviour
     public GameObject deathPanel;
     public TextMeshProUGUI finaldepth;
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        Screen.orientation = ScreenOrientation.Portrait;
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         if (!PlayerPrefs.HasKey("bestDepth"))
         {
             PlayerPrefs.SetInt("bestDepth", 0);
         }
         Time.timeScale = 1;
         coinCounterText.text = PlayerPrefs.GetInt("Coins").ToString();
-        CheckResolution();
-        if(resolution_16_9)
-        {
-            sp1 = new Vector3(-2, -6, 0);
-            sp2 = new Vector3(-1, -6, 0);
-            sp3 = new Vector3(0, -6, 0);
-            sp4 = new Vector3(1, -6, 0);
-            sp5 = new Vector3(2, -6, 0);
-        }
-        else
-        {
-            sp1 = new Vector3(-1.8f, -6, 0);
-            sp2 = new Vector3(-0.8f, -6, 0);
-            sp3 = new Vector3(0, -6, 0);
-            sp4 = new Vector3(0.8f, -6, 0);
-            sp5 = new Vector3(1.8f, -6, 0);
-        }
         GameStart();
-    }
-
-    void CheckResolution()
-    {
-        if(Screen.currentResolution.height / Screen.currentResolution.width < 2)
-        {
-            resolution_16_9 = true;
-        }
-        else
-        {
-            resolution_16_9 = false;
-        }
     }
 
     // Update is called once per frame
@@ -84,6 +69,7 @@ public class GameMenager : MonoBehaviour
                 pause();
             }
         }
+        Debug.Log("Fps: " + (1f / Time.deltaTime).ToString("F2"));
     }
 
     IEnumerator SpawnSprites()
@@ -93,67 +79,16 @@ public class GameMenager : MonoBehaviour
             float waitTime = Random.Range(2f, 3f);
             yield return new WaitForSeconds(waitTime);
 
-            int spawnpoint = Random.Range(1, 6);
+            int spawnpoint = Random.Range(0, 5);
             int fishOrPlank = Random.Range(0, 2);
-            if (spawnpoint == 1)
+            if (fishOrPlank == 0)
             {
-                if (fishOrPlank == 0)
-                {
-                    Instantiate(piranha, sp1, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(plank, sp1, Quaternion.identity);
-                    SpawnCoin(spawnpoint);
-                }
+                Instantiate(piranha, spawnPoints[spawnpoint].position, Quaternion.identity);
             }
-            if (spawnpoint == 2)
+            else
             {
-                if (fishOrPlank == 0)
-                {
-                    Instantiate(piranha, sp2, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(plank, sp2, Quaternion.identity);
-                    SpawnCoin(spawnpoint);
-                }
-            }
-            if (spawnpoint == 3)
-            {
-                if (fishOrPlank == 0)
-                {
-                    Instantiate(piranha, sp3, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(plank, sp3, Quaternion.identity);
-                    SpawnCoin(spawnpoint);
-                }
-            }
-            if (spawnpoint == 4)
-            {
-                if (fishOrPlank == 0)
-                {
-                    Instantiate(piranha, sp4, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(plank, sp4, Quaternion.identity);
-                    SpawnCoin(spawnpoint);
-                }
-            }
-            if (spawnpoint == 5)
-            {
-                if (fishOrPlank == 0)
-                {
-                    Instantiate(piranha, sp5, Quaternion.identity);
-                }
-                else
-                {
-                    Instantiate(plank, sp5, Quaternion.identity);
-                    SpawnCoin(spawnpoint);
-                }
+                Instantiate(plank, spawnPoints[spawnpoint].position, Quaternion.identity, spawnPoints[spawnpoint]);
+                SpawnCoin(spawnpoint);
             }
         }
     }
@@ -163,33 +98,13 @@ public class GameMenager : MonoBehaviour
         int choice = Random.Range(1, 4);
         if (choice == 3)
         {
-            int spawnpoint = Random.Range(1, 6);
+            int spawnpoint = Random.Range(0, 5);
             while (spawnpoint == usedSpawnPoint || Mathf.Abs(usedSpawnPoint-spawnpoint) == 1)
             {
-                spawnpoint = Random.Range(1, 6);
+                spawnpoint = Random.Range(0, 5);
             }
 
-            if (spawnpoint == 1)
-            {
-                Instantiate(coin, sp1, Quaternion.identity);
-            }
-            if (spawnpoint == 2)
-            {
-                Instantiate(coin, sp2, Quaternion.identity);
-            }
-            if (spawnpoint == 3)
-            {
-                Instantiate(coin, sp3, Quaternion.identity);
-            }
-            if (spawnpoint == 4)
-            {
-                Instantiate(coin, sp4, Quaternion.identity);
-            }
-            if (spawnpoint == 5)
-            {
-                Instantiate(coin, sp5, Quaternion.identity);
-            }
-
+            Instantiate(coin, spawnPoints[spawnpoint].position, Quaternion.identity);
         }
     }
 
@@ -218,21 +133,14 @@ public class GameMenager : MonoBehaviour
 
     IEnumerator GoingDeeper()
     {
+        SpriteRenderer backgroundRenderer = background.GetComponent<SpriteRenderer>();
         while (true)
         {
-            yield return new WaitForSeconds(1.7f);
-            float decrease = 0.0F;
-            Color oldColor = background.GetComponent<SpriteRenderer>().color;
-            if ((oldColor.r == oldColor.g && oldColor.g == oldColor.b) && oldColor.r > 0.1F)
-            {
-                decrease = 0.01F;
-            }
-            if ((oldColor.r == oldColor.g && oldColor.g == oldColor.b) && oldColor.r > 0.2F)
-            {
-                decrease = 0.05F;
-            }
-            Color newColor = new Color(oldColor.r - decrease, oldColor.g - decrease, oldColor.b - decrease, oldColor.a);
-            background.GetComponent<SpriteRenderer>().color = newColor;
+            yield return new WaitForFixedUpdate();
+            Color currentColor = backgroundRenderer.color;
+            Color newColor = Color.Lerp(currentColor, Color.gray3, 15/255f * Time.fixedDeltaTime);
+
+            backgroundRenderer.color = newColor;
         }
     }
 

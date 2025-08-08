@@ -14,18 +14,15 @@ public class Piranha : MonoBehaviour
         {
             sideSpeed *= -1;
         }
-        GameMenager gameMenager = FindFirstObjectByType<GameMenager>();
-        if(!gameMenager.resolution_16_9)
-        {
-            leftbound = -1.9f;
-            rightbound = 1.9f;
-        }
+        float screenWidth = Camera.main.orthographicSize * 2 / Screen.height * Screen.width;
+        leftbound = -screenWidth / 2 + 0.4f;
+        rightbound = screenWidth / 2 - 0.4f;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
         if (transform.position.x >= rightbound)
         {
             sideSpeed = Mathf.Abs(sideSpeed) * -1;
@@ -51,7 +48,7 @@ public class Piranha : MonoBehaviour
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
-        transform.Translate(Vector2.right * sideSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * sideSpeed * Time.fixedDeltaTime);
     }
 
     private void OnBecameInvisible()

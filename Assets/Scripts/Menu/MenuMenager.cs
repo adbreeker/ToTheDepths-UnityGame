@@ -12,11 +12,18 @@ public class MenuMenager : MonoBehaviour
 
     public GameObject instructionsPanel;
 
+    [Header("Submarine cost")]
+    public int submarineCost = 100;
+
     bool quitTried = false;
+
+    void Awake()
+    {
+        Screen.orientation = ScreenOrientation.Portrait;
+    }
 
     void Start()
     {
-        Screen.orientation = ScreenOrientation.Portrait;
         if (!PlayerPrefs.HasKey("Coins"))
         {
             PlayerPrefs.SetInt("Coins", 0);
@@ -31,7 +38,7 @@ public class MenuMenager : MonoBehaviour
 
         if(PlayerPrefs.GetInt("Submarine") == 0)
         {
-            submarineButtonText.text = "Spend 100 <color=yellow>●</color> to buy a submarine";
+            submarineButtonText.text = $"Spend {submarineCost} <color=yellow>●</color> to buy a submarine";
         }
         else
         {
@@ -67,6 +74,7 @@ public class MenuMenager : MonoBehaviour
     public void LoadGame()
     {
         soundMenager.ButtonClickSound();
+        Screen.orientation = ScreenOrientation.Portrait;
         SceneManager.LoadScene("Game");
     }
 
@@ -75,14 +83,20 @@ public class MenuMenager : MonoBehaviour
         if(PlayerPrefs.GetInt("Submarine") == 1)
         {
             soundMenager.ButtonClickSound();
+            Screen.orientation = ScreenOrientation.LandscapeRight;
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToLandscapeRight = true;
+            Screen.autorotateToPortrait = false;
+            Screen.autorotateToPortraitUpsideDown = false;
+            Screen.orientation = ScreenOrientation.AutoRotation;
             SceneManager.LoadScene("Submarine");
         }
         else
         {
-            if(PlayerPrefs.GetInt("Coins") >= 100)
+            if(PlayerPrefs.GetInt("Coins") >= submarineCost)
             {
                 soundMenager.PurchaseSound();
-                PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 100);
+                PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - submarineCost);
                 coinCounterText.text = PlayerPrefs.GetInt("Coins").ToString();
                 submarineButtonText.text = "Submarine";
                 PlayerPrefs.SetInt("Submarine", 1);

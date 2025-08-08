@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SoundMenager : MonoBehaviour
 {
+    // Instance
+    public static SoundMenager instance;
+
 
     public GameObject audioPrefab;
     public AudioClip playerDamage;
@@ -13,6 +16,19 @@ public class SoundMenager : MonoBehaviour
     public AudioClip pickUp;
     public AudioClip repairSound;
     public AudioClip frictionSound;
+
+    void Awake()
+    {
+        // Singleton pattern to ensure only one instance exists
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void PlayerDamagedSound()
     {

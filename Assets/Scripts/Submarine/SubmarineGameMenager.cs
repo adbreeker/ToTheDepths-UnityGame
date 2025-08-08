@@ -38,10 +38,9 @@ public class SubmarineGameMenager : MonoBehaviour
     public GameObject deathPanel;
     public TextMeshProUGUI finaldistance;
 
-
     void Start()
     {
-        Screen.orientation = ScreenOrientation.LandscapeRight;
+
         if (!PlayerPrefs.HasKey("bestDistance"))
         {
             PlayerPrefs.SetInt("bestDistance", 0);
@@ -49,11 +48,7 @@ public class SubmarineGameMenager : MonoBehaviour
         Time.timeScale = 1;
         coinCounterText.text = PlayerPrefs.GetInt("Coins").ToString();
         GameStart();
-        Screen.autorotateToLandscapeLeft = true;
-        Screen.autorotateToLandscapeRight = true;
-        Screen.autorotateToPortrait = false;
-        Screen.autorotateToPortraitUpsideDown = false;
-        Screen.orientation = ScreenOrientation.AutoRotation;
+
     }
 
 
