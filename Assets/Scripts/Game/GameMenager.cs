@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameMenager : MonoBehaviour
 {
@@ -34,6 +33,7 @@ public class GameMenager : MonoBehaviour
     public GameObject deathPanel;
     public TextMeshProUGUI finaldepth;
 
+
     private void Awake()
     {
         if (instance == null)
@@ -50,6 +50,7 @@ public class GameMenager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if (!PlayerPrefs.HasKey("bestDepth"))
         {
             PlayerPrefs.SetInt("bestDepth", 0);
@@ -209,13 +210,13 @@ public class GameMenager : MonoBehaviour
     public void RestartButton()
     {
         soundMenager.ButtonClickSound();
-        SceneManager.LoadScene("Game");
+        ScreenManager.Instance.ResetScene();
     }
 
     public void BackToMenuButton()
     {
         soundMenager.ButtonClickSound();
-        SceneManager.LoadScene("Menu");
+        ScreenManager.Instance.LoadScene("Menu", ScreenOrientation.Portrait);
     }
 
     public void pause()

@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 2e1b9e3f91758504f9d957e792093e88
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 1cb9e245562c5ef4b9c8eb8ef166f820
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: e30ae83a9eb699d4c934a401df6c468f
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
@@ -15,3 +21,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Submarine.unity
     guid: 968694d593d3d5d4796be05c235482c1
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
