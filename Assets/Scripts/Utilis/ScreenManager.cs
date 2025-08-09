@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class ScreenManager : MonoBehaviour
 {
     public static ScreenManager Instance { get; private set; }
+
+    public float loadingTime = 1.5f; // Delay before loading the new scene
+
     private void Awake()
     {
         if (Instance == null)
@@ -61,7 +64,7 @@ public class ScreenManager : MonoBehaviour
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
         loading.allowSceneActivation = false;
         float timePass = 0f;
-        while (timePass <= 1f)
+        while (timePass <= loadingTime)
         {
             Debug.Log($"Loading scene {sceneName}: {timePass}");
             yield return null;

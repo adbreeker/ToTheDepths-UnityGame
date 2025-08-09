@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine("BubbleAnimation");
+
+        Input.gyro.enabled = true;
     }
 
     // Update is called once per frame
