@@ -135,11 +135,12 @@ public class GameMenager : MonoBehaviour
     IEnumerator GoingDeeper()
     {
         SpriteRenderer backgroundRenderer = background.GetComponent<SpriteRenderer>();
+        Color destinedColor = new Color(0.3f, 0.3f, 0.3f, 1.0f);
         while (true)
         {
             yield return new WaitForFixedUpdate();
             Color currentColor = backgroundRenderer.color;
-            Color newColor = Color.Lerp(currentColor, Color.gray3, 15/255f * Time.fixedDeltaTime);
+            Color newColor = Color.Lerp(currentColor, destinedColor, 15/255f * Time.fixedDeltaTime);
 
             backgroundRenderer.color = newColor;
         }

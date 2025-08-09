@@ -1,7 +1,41 @@
-# To The Depths
-## This is my first game for Google Play Store.
+<div align="center">
+  <img src="Assets/Images/ui/appIcon.png" alt="To The Depths" width="150" height="150">
+  
+  # To The Depths
+  
+  [![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.adbreeker.Tothedepths)
+  
+  **My first mobile game**
+</div>
 
-To The Depths is a simple android game. <br>
-There are two minigames inside:
-  1. Dive in - move your phone (gyroscope) to move the scuba diver, avoid planks and piranhas, collect coins and break your personal records.
-  2. Submarine - hold finger on screen to go up, take finger off to go down, avoid stalactites and stalagmites, collect coins and toolboxes (healing), and break your personal records.
+## About
+
+A simple Android game with two minigames. This is my first game published on Google Play Store.
+
+## Game Modes
+
+**1. Dive In**
+- Tilt your phone to move the scuba diver
+- Avoid planks and piranhas
+- Collect coins and beat your records
+
+**2. Submarine**
+- Hold finger to go up, release to go down
+- Avoid stalactites and stalagmites
+- Collect coins and toolboxes (healing)
+- 3-hit health system
+
+## What I've Learnt
+- Basics of C# and Unity
+- Simple 2D movement and gyroscope integration
+- Managing screen resolution and orientation
+- Basic sound and scene management
+- Implementing rewarded ads with Unity Ads (legacy)
+- Deploying to the Google Play Store
+
+## Built With
+Unity & C#
+
+## Download
+
+[<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" width="200">](https://play.google.com/store/apps/details?id=com.adbreeker.Tothedepths)
