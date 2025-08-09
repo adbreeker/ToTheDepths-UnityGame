@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SubmarineGameMenager : MonoBehaviour
 {
@@ -48,9 +48,7 @@ public class SubmarineGameMenager : MonoBehaviour
         Time.timeScale = 1;
         coinCounterText.text = PlayerPrefs.GetInt("Coins").ToString();
         GameStart();
-
     }
-
 
     void Update()
     {
@@ -208,13 +206,13 @@ public class SubmarineGameMenager : MonoBehaviour
     public void RestartButton()
     {
         soundMenager.ButtonClickSound();
-        SceneManager.LoadScene("Submarine");
+        ScreenManager.Instance.ResetScene();
     }
 
     public void BackToMenuButton()
     {
         soundMenager.ButtonClickSound();
-        SceneManager.LoadScene("Menu");
+        ScreenManager.Instance.LoadScene("Menu", ScreenOrientation.Portrait);
     }
 
     public void pause()

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class MenuMenager : MonoBehaviour
@@ -17,13 +16,9 @@ public class MenuMenager : MonoBehaviour
 
     bool quitTried = false;
 
-    void Awake()
-    {
-        Screen.orientation = ScreenOrientation.Portrait;
-    }
-
     void Start()
     {
+
         if (!PlayerPrefs.HasKey("Coins"))
         {
             PlayerPrefs.SetInt("Coins", 0);
@@ -74,8 +69,7 @@ public class MenuMenager : MonoBehaviour
     public void LoadGame()
     {
         soundMenager.ButtonClickSound();
-        Screen.orientation = ScreenOrientation.Portrait;
-        SceneManager.LoadScene("Game");
+        ScreenManager.Instance.LoadScene("Game", ScreenOrientation.Portrait);
     }
 
     public void Submarine()
@@ -83,13 +77,7 @@ public class MenuMenager : MonoBehaviour
         if(PlayerPrefs.GetInt("Submarine") == 1)
         {
             soundMenager.ButtonClickSound();
-            Screen.orientation = ScreenOrientation.LandscapeRight;
-            Screen.autorotateToLandscapeLeft = true;
-            Screen.autorotateToLandscapeRight = true;
-            Screen.autorotateToPortrait = false;
-            Screen.autorotateToPortraitUpsideDown = false;
-            Screen.orientation = ScreenOrientation.AutoRotation;
-            SceneManager.LoadScene("Submarine");
+            ScreenManager.Instance.LoadScene("Submarine", ScreenOrientation.LandscapeLeft);
         }
         else
         {
