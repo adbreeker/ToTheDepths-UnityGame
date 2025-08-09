@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public GameMenager gameMenager;
     public GameObject bubble;
 
+    float leftbound;
+    float rightbound;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,10 @@ public class Player : MonoBehaviour
         StartCoroutine("BubbleAnimation");
 
         Input.gyro.enabled = true;
+
+        float screenWidth = Camera.main.orthographicSize * 2 / Screen.height * Screen.width;
+        leftbound = -screenWidth / 2 + 0.2f;
+        rightbound = screenWidth / 2 - 0.2f;
     }
 
     // Update is called once per frame
@@ -32,7 +38,7 @@ public class Player : MonoBehaviour
             dirX = 0;
         }
 
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -2.4f, 2.4f), transform.position.y);
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, leftbound, rightbound), transform.position.y);
 
     }
 
