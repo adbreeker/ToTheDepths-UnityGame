@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="Assets/Images/ui/appIcon.png" alt="To The Depths" width="150" height="150">
+  <img src="Assets/Images/gameIcons/GameIconRound.png" alt="To The Depths" width="200" height="200">
   
   # To The Depths
   
