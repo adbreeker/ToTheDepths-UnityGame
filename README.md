@@ -5,12 +5,15 @@
   
   [![Google Play](https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=com.adbreeker.Tothedepths)
   
-  **My first mobile game**
+  **Simple arcade game and my first Unity project**
 </div>
 
 ## About
+This is my 1st Unity project, first game developed and deployed by me.
 
-A simple Android game with two minigames. This is my first game published on Google Play Store.
+A simple underwater arcade game featuring two game modes inspired by classics of this genre. Dive deep into the ocean depths, collect treasure, and test your skills in this action-packed mobile experience.
+
+The game includes two distinct game modes that offer different challenges and gameplay mechanics. Start with the Dive In mode where you'll use your device's gyroscope to navigate through dangerous waters, then unlock the Submarine mode after collecting 25 coins to explore even deeper underwater caverns.
 
 ## Game Modes
 
